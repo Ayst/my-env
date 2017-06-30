@@ -1,0 +1,50 @@
+[user]
+	name = Sebastien Talidec
+	email = prestasin38@ouest-france.fr
+[core]
+	autocrlf = input
+[pull]
+	rebase = true
+[push]
+	default = simple
+[rebase]
+	autoStash = true
+[alias]
+	p = push -u origin
+	b = branch
+	st = status
+	s = status -s
+	a = add
+	ci = commit
+    	co = checkout
+    	cb = checkout -b #Checkout a new branch %branch_name%
+	
+    	ec = config --global -e #Edit .gitconfig
+	glog = log --color --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	gloga = log --color --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+	lg = log --graph --oneline --decorate -all
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	undo = reset HEAD~1 --mixed #Reset last commit (keep changes)
+    	remove = reset --hard HEAD~1 #Delete last commit (delete changes)
+	pushf = push --force-with-lease
+
+	pullr = pull --rebase=preserve #pull avec un rebase au lieu dun merge
+    	diffw = diff --color-words #diff dont la granularité est le mot
+    	d = diff --unified=0 --ignore-space-at-eol --color-words='[[:alnum:]]+|[^[:space:]]' #Diff en supprimant les lignes de contexte et donnant une définition du mot plus stricte
+    	up = !git pull --rebase --prune $@ && git submodule update --init --recursive #Make working directory up to date
+    	cm = !git add -A && git commit -m #Commit all work %commit_message%
+    	save = !git add -A && git commit -m 'SAVEPOINT' #Commit all changes (untracked included) in a Savepoint
+    	wip = !git add -u && git commit -m "WIP" #Commit all tracked changes in a wip commit
+    	amend = commit -a --amend #Amend last commit and add last changes (but not new files)
+    	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard #Delete all current changes, keep it in a unreachable commit
+    	bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs -r git branch -d; }; f"
+    	bdone = "!f() { git checkout ${1-develop} && git up && git bclean ${1-develop}; }; f"
+    	assume = update-index --assume-unchanged #Keep configuration files as unchanged %files%
+    	unassume = update-index --no-assume-unchanged #Remove files from assume state %files%
+    	assumed = "!git ls-files -v | grep ^h | cut -c 3-" #List all fils in assume state
+	filelog = log -u
+	ours = "!f() { git co --ours $@ && git add $@; }; f"
+	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+	show-files = show --pretty="format:" --name-only
+	unstage = reset HEAD --
+	last = log -1 HEAD
