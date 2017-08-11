@@ -37,19 +37,21 @@ floating_modifier $mod
 workspace 1:web output DP-3
 workspace 2:term output DP-1
 workspace 3:kee output DP-3
-workspace 4:idea output DP-1
+workspace 4:ide output DP-1
 workspace 5:post output DP-3
-workspace 6:db output DP-1
+workspace 6:ide output DP-1
 workspace 7 output DP-3
-workspace 8 output DP-1
+workspace 8:ide output DP-1
+workspace 9:ide output DP-1
 
 exec --no-startup-id i3-msg 'workspace 1:web; exec firefox'
 exec --no-startup-id i3-msg 'workspace 2:term; exec i3-sensible-terminal'
+exec --no-startup-id i3-msg 'workspace 2:term; exec i3-sensible-terminal'
 exec --no-startup-id i3-msg 'workspace 3:kee; exec keepass2'
 exec --no-startup-id i3-msg 'workspace 5:post; exec postman'
-exec --no-startup-id i3-msg 'workspace 6:db; exec executequery'
-exec --no-startup-id i3-msg 'workspace 4:idea; exec idea'
+exec --no-startup-id i3-msg 'workspace 4:ide; exec idea'
 
+exec --no-startup-id fluxgui
 exec --no-startup-id ~/startDropbox.sh
 
 # start a terminal
@@ -137,11 +139,11 @@ bindsym $mod+agrave workspace number 10
 bindsym $mod+Shift+ampersand move container to workspace 1:web
 bindsym $mod+Shift+eacute move container to workspace 2:term
 bindsym $mod+Shift+quotedbl move container to workspace 3:kee
-bindsym $mod+Shift+apostrophe move container to workspace 4:idea
+bindsym $mod+Shift+apostrophe move container to workspace 4:ide
 bindsym $mod+Shift+5 move container to workspace 5:post
-bindsym $mod+Shift+minus move container to workspace 6:db
+bindsym $mod+Shift+minus move container to workspace 6:ide
 bindsym $mod+Shift+egrave move container to workspace 7
-bindsym $mod+Shift+underscore move container to workspace 8
+bindsym $mod+Shift+underscore move container to workspace 8:ide
 bindsym $mod+Shift+ccedilla move container to workspace 9
 bindsym $mod+Shift+agrave move container to workspace 10
 
@@ -177,6 +179,13 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+
+# Volume
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+#Headphone to unmute
 
 # mode system
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown

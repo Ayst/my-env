@@ -10,7 +10,7 @@
 [rebase]
 	autoStash = true
 [alias]
-	p = push -u origin
+	p = push -u 
 	b = branch
 	st = status
 	s = status -s
@@ -26,7 +26,10 @@
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	undo = reset HEAD~1 --mixed #Reset last commit (keep changes)
     	remove = reset --hard HEAD~1 #Delete last commit (delete changes)
-	pushf = push --force-with-lease
+	pushf = push --force-with-lease #Push force
+	ri = rebase -i origin/develop #Rebase interactif %branch_name%
+ 	cleanb = remote prune origin #Delete local branch deleted on remote
+    	bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs -r git branch -d; }; f"
 
 	pullr = pull --rebase=preserve #pull avec un rebase au lieu dun merge
     	diffw = diff --color-words #diff dont la granularité est le mot
@@ -37,7 +40,6 @@
     	wip = !git add -u && git commit -m "WIP" #Commit all tracked changes in a wip commit
     	amend = commit -a --amend #Amend last commit and add last changes (but not new files)
     	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard #Delete all current changes, keep it in a unreachable commit
-    	bclean = "!f() { git branch --merged ${1-develop} | grep -v " ${1-develop}$" | xargs -r git branch -d; }; f"
     	bdone = "!f() { git checkout ${1-develop} && git up && git bclean ${1-develop}; }; f"
     	assume = update-index --assume-unchanged #Keep configuration files as unchanged %files%
     	unassume = update-index --no-assume-unchanged #Remove files from assume state %files%
