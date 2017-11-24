@@ -1,0 +1,12 @@
+**
+!.config
+!.config/**
+
+!scripts
+!scripts/**
+
+!bin
+!bin/**
+
+.gitconfig
+.gitignore
