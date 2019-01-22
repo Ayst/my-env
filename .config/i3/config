@@ -32,17 +32,17 @@ focus_follows_mouse no
 floating_modifier $mod
 
 #Startup
-#exec --no-startup-id ~/configMonitor.sh
+exec --no-startup-id ~/configMonitor.sh
 
-workspace 1:web output DP-3
-workspace 2:term output DP-1
-workspace 3:kee output DP-3
-workspace 4:ide output DP-1
-workspace 5:post output DP-3
-workspace 6:ide output DP-1
-workspace 7:code output DP-3
-workspace 8:ide output DP-1
-workspace 9:ide output DP-1
+workspace 1:web output DP-1
+workspace 2:term output DP-3
+workspace 3:kee output DP-1
+workspace 4:ide output DP-3
+workspace 5:post output DP-1
+workspace 6:ide output DP-3
+workspace 7:code output DP-1
+workspace 8:ide output DP-3
+workspace 9:mail output DP-1
 
 exec --no-startup-id i3-msg 'workspace 1:web; exec firefox'
 exec --no-startup-id i3-msg 'workspace 2:term; exec i3-sensible-terminal'
@@ -50,10 +50,11 @@ exec --no-startup-id i3-msg 'workspace 2:term; exec i3-sensible-terminal'
 exec --no-startup-id i3-msg 'workspace 3:kee; exec keepass2'
 exec --no-startup-id i3-msg 'workspace 5:post; exec postman'
 exec --no-startup_id i3-msg 'workspace 7:code; exec code'
-exec --no-startup-id i3-msg 'workspace 4:ide; exec idea'
+exec --no-startup-id i3-msg 'workspace 9:mail; exec thunderbird'
+
 
 exec --no-startup-id fluxgui
-exec --no-startup-id ~/startDropbox.sh
+exec --no-startup-id ~/scripts/startDropbox.sh
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -213,5 +214,7 @@ bar {
 }
 
 exec vmtoolsd -n vmusr --blockFd 3
+
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
 
 
