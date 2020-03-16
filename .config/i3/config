@@ -42,18 +42,15 @@ workspace 5:post output DP-1
 workspace 6:ide output DP-3
 workspace 7:code output DP-1
 workspace 8:ide output DP-3
-workspace 9:mail output DP-1
+workspace 9 output DP-1
 
 exec --no-startup-id i3-msg 'workspace 1:web; exec firefox'
 exec --no-startup-id i3-msg 'workspace 2:term; exec i3-sensible-terminal'
 exec --no-startup-id i3-msg 'workspace 2:term; exec i3-sensible-terminal'
 exec --no-startup-id i3-msg 'workspace 3:kee; exec keepass2'
-exec --no-startup-id i3-msg 'workspace 5:post; exec postman'
 exec --no-startup_id i3-msg 'workspace 7:code; exec code'
-exec --no-startup-id i3-msg 'workspace 9:mail; exec thunderbird'
 
-
-exec --no-startup-id fluxgui
+exec --no-startup-id redshift -l 48.6:1.40 -t 5500:3000
 exec --no-startup-id ~/scripts/startDropbox.sh
 
 # start a terminal
